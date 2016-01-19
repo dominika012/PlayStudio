@@ -1,4 +1,4 @@
-package GameStudio.score;
+package GameStudio.persistance;
 
 import java.sql.Connection;
 
@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import GameStudio.score.HallOfFame;
+import GameStudio.score.UserScore;
 
 public class HallOfFameDTB extends HallOfFame {
 

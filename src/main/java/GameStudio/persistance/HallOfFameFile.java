@@ -1,4 +1,4 @@
-package GameStudio.score;
+package GameStudio.persistance;
 
 import java.io.File;
 
@@ -11,6 +11,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import GameStudio.score.HallOfFame;
+import GameStudio.score.UserScore;
 
 public class HallOfFameFile extends HallOfFame {
 	private final String SCORES_FILE = System.getProperty("user.home") + "/mnsw.scores";

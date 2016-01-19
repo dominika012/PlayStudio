@@ -8,7 +8,6 @@
 
 	<context:component-scan base-package="minesweeper" />
 	<context:component-scan base-package="fifteenPuzle" />
-	<context:component-scan base-package="pexeso" />
 
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -30,14 +29,9 @@
 		<constructor-arg type="int" value="1" />
 	</bean>
 
-	<bean id="puzzleField" class="fifteenPuzle.core.PuzzleField">
+	<bean id="puzzleField" class="slidingPuzzle.core.PuzzleField">
 		<constructor-arg type="int" value="3" />
 		<constructor-arg type="int" value="3" />
-	</bean>
-
-	<bean id="pexesoField" class="pexeso.core.PexesoField">
-		<constructor-arg type="int" value="4" />
-		<constructor-arg type="int" value="4" />
 	</bean>
 
 
@@ -47,9 +41,6 @@
 	<bean id="hallOfFameDTBPuzzle" class="GameStudio.score.HallOfFameHibernate">
 		<constructor-arg value="Puzzle" />
 	</bean>
-	<bean id="hallOfFameDTBPexeso" class="GameStudio.score.HallOfFameHibernate">
-		<constructor-arg value="Pexeso" />
-	</bean>
 
 
 	<bean id="minesConsole" class="minesweeper.consoleui.MineConsoleUI">
@@ -58,22 +49,15 @@
 
 	</bean>
 
-	<bean id="puzzleConsole" class="fifteenPuzle.consoleui.PuzzleConsoleUI">
+	<bean id="puzzleConsole" class="slidingPuzzle.consoleui.PuzzleConsoleUI">
 		<constructor-arg ref="puzzleField" />
 		<property name="hallOfFame" ref="hallOfFameDTBPuzzle" />
 	</bean>
-
-	<bean id="pexesoConsole" class="pexeso.consoleui.PexesoConsoleUI">
-		<constructor-arg ref="pexesoField" />
-		<property name="hallOfFame" ref="hallOfFameDTBPexeso" />
-	</bean>
-
 
 
 	<bean id="gameStudio" class="GameStudio.main.GameStudio">
 		<property name="mui" ref="minesConsole" />
 		<property name="pui" ref="puzzleConsole" />
-		<property name="peui" ref="pexesoConsole" />
 	</bean>
 
 </beans>

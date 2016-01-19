@@ -33,22 +33,21 @@ public class MineConsoleUI {
 			processInput();
 			show();
 		}
-		// show();
-
+		show();
 		if (field.getState() == GameState.SOLVED) {
 			String name = System.getProperty("user.name");
 			try {
 				hallOfFame.addScore(name, field.getPlayingSeconds());
 				hallOfFame.loadScore();
 			} catch (Exception e) {
-				System.err.println("Nepodarilo sa ulozit score");
+				System.err.println("Can not save score...");
 				e.printStackTrace();
 			}
 
-			System.out.println("Vyhral si!");
+			System.err.println("You WIN! :) ");
 			System.out.println(hallOfFame);
 		} else {
-			System.out.println("Prehral si!");
+			System.err.println("You LOOSE! :( ");
 		}
 	}
 

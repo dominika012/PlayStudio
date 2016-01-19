@@ -20,7 +20,7 @@ public abstract class HallOfFame {
 		try {
 			scores = loadScore();
 		} catch (Exception e) {
-			scores = new ArrayList<>();
+			scores = new ArrayList<UserScore>();
 		}
 
 		StringBuilder sb = new StringBuilder();
