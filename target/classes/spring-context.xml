@@ -7,57 +7,60 @@
    		 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:component-scan base-package="minesweeper" />
-	<context:component-scan base-package="fifteenPuzle" />
+	<context:component-scan base-package="slidingPuzle" />
 
-	<bean
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		id="entityManagerFactory">
-		<property name="persistenceUnitName" value="hibernatePersistenceUnit" />
-	</bean>
+	 <bean
+         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+         id="entityManagerFactory">
+         <property name="persistenceUnitName" value="hibernatePersistenceUnit" />
+     </bean>
 
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
-		id="transactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+     <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+         id="transactionManager">
+         <property name="entityManagerFactory" ref="entityManagerFactory" />
+     </bean>
+     
+     <tx:annotation-driven transaction-manager="transactionManager" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
 
 
-	<bean id="minesField" class="minesweeper.core.MineField">
+	<bean id="minesField" class="com.ness.Game.minesweeper.core.MineField">
 		<constructor-arg type="int" value="9" />
 		<constructor-arg type="int" value="9" />
 		<constructor-arg type="int" value="1" />
 	</bean>
 
-	<bean id="puzzleField" class="slidingPuzzle.core.PuzzleField">
+	<bean id="puzzleField" class="com.ness.Game.slidingPuzzle.core.PuzzleField">
 		<constructor-arg type="int" value="3" />
 		<constructor-arg type="int" value="3" />
 	</bean>
 
 
-	<bean id="hallOfFameDTBMines" class="GameStudio.score.HallOfFameHibernate">
+	<bean id="hallOfFameDTBMines" class="com.ness.GameStudio.score.HallOfFameHibernate">
 		<constructor-arg value="Minesweeper" />
 	</bean>
-	<bean id="hallOfFameDTBPuzzle" class="GameStudio.score.HallOfFameHibernate">
+	
+	<bean id="hallOfFameDTBPuzzle" class="com.ness.GameStudio.score.HallOfFameHibernate">
 		<constructor-arg value="Puzzle" />
 	</bean>
 
 
-	<bean id="minesConsole" class="minesweeper.consoleui.MineConsoleUI">
+	<bean id="minesConsole" class="com.ness.Game.minesweeper.consoleui.MineConsoleUI">
 		<constructor-arg ref="minesField" />
 		<property name="hallOfFame" ref="hallOfFameDTBMines" />
 
 	</bean>
 
-	<bean id="puzzleConsole" class="slidingPuzzle.consoleui.PuzzleConsoleUI">
+	<bean id="puzzleConsole" class="com.ness.Game.slidingPuzzle.consoleui.PuzzleConsoleUI">
 		<constructor-arg ref="puzzleField" />
 		<property name="hallOfFame" ref="hallOfFameDTBPuzzle" />
 	</bean>
 
 
-	<bean id="gameStudio" class="GameStudio.main.GameStudio">
-		<property name="mui" ref="minesConsole" />
-		<property name="pui" ref="puzzleConsole" />
+	<bean id="gameStudio" class="com.ness.GameStudio.main.GameStudio">
+		<property name="puzzleConsoleUI" ref="puzzleConsole" />
+		<property name="mineConsoleUI" ref="minesConsole" />
 	</bean>
 
+	
 </beans>
